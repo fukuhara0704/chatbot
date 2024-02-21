@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase</title>
+</head>
+
+<body>
+    <div>
+        <th:block th:if="${questionModel.answerContext != null}">
+            <p th:text="${questionModel.answerContext}"></p>
+        </th:block>
+        <h2 th:text="'状態' + ${questionModel.questionTitle}"></h2>
+        <h2>質問</h2>
+        <p th:text="${questionModel.question}"></p>
+
+        <form action="#" th:action="@{/answer}" th:object="${answerForm}" method="post">
+            <label>
+                <input type="radio" name="answer" th:value="true" required>
+                はい
+            </label>
+            <label>
+                <input type="radio" name="answer" th:value="false" required>
+                いいえ
+            </label>
+            <p>
+                <button type="submit">回答する</button>
+                <input type="hidden" id="answerContext" th:name="answerContext" th:value="${questionModel.answer}" />
+                <input type="hidden" id="questionNum" th:name="questionNum" th:value="${questionModel.questionNum}" />
+                <input type="hidden" id="nextQuestionNum" th:name="nextQuestionNum" th:value="${questionModel.nextQuestionNum}" />
+                <input type="hidden" id="phaseType" th:name="phaseType" th:value="${questionModel.phaseType}" />
+            </p>
+        </form>
+        <p>
+            <!-- 戻るボタンを追加 -->
+            <button onclick="goBack()">戻る</button>
+        </p>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase</title>
+</head>
+
+<body>
+    <div>
+        <h2 th:text="${answerModel.questionTitle}"></h2>
+        <h2>回答</h2>
+        <p th:text="${answerModel.answerContext}"></p>
+        <p>
+            <!-- 戻るボタンを追加 -->
+            <button onclick="goBack()">戻る</button>
+        </p>
+        <form action="#" th:action="@{/}" th:object="${answerForm}" method="get">
+            <p>
+                <button type="submit">初めの質問に戻る</button>
+            </p>
+        </form>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>
