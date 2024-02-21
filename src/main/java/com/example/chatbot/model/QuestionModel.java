@@ -2,6 +2,9 @@ package com.example.chatbot.model;
 
 import lombok.Data;
 
+/*
+ * モデルクラス
+ */
 @Data
 public class QuestionModel {
     public String answerContext;
