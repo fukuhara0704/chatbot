@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Phase</title>
+</head>
+<body>
+    <div>
+        <h2 th:text="${subExplorePhase.title}"></h2>
+        <p th:text="${subExplorePhase.question}"></p>
+        
+        <!-- フェーズの選択フォーム -->
+        <form action="#" th:action="@{/phase}" th:object="${phaseForm}" method="post">
+            <input type="hidden" id="type" th:name="type" th:value="${subExplorePhase.type}" />
+            <label th:each="phase, iterStat : ${subExplorePhase.questions}" th:for="${'question' + iterStat.index}">
+                <input type="radio" th:id="${'question' + iterStat.index}" th:name="phaseForm" th:value="${phase}" required />
+                <input type="hidden" th:id="${'hd_question_' + iterStat.index}" th:name="hdId" th:value="${iterStat.index}" />
+                <span th:text="${phase}"></span>
+            </label><br/>
+            <p>
+                <input type="submit" value="次へ" />
+            </p>
+        </form>
+        <p>
+            <!-- 戻るボタンを追加 -->
+            <button onclick="goBack()">戻る</button>
+        </p>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
