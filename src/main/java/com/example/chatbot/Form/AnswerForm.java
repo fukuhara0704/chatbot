@@ -6,7 +6,6 @@ import lombok.Data;
 public class AnswerForm {
     public boolean answer;
     public String answerContext;
-    public Integer phaseType;
-    public Integer questionNum;
-    public Integer nextQuestionNum;
+    public String phaseType;
+    public Integer id;
 }

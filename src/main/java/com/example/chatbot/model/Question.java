@@ -6,9 +6,11 @@ import lombok.Data;
 public class Question {
 
     public int id;
+    public int nextId;
+    public String phaseType;
     public String title;
     public String question;
     public String answer;
-    public String nextQuestionContext;
+    public String questionContext;
 
 }

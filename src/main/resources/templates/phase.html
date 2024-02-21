@@ -9,12 +9,12 @@
 
 <body>
     <div>
-        <th:block th:if="${questionModel.answerContext != null}">
-            <p th:text="${questionModel.answerContext}"></p>
+        <th:block th:if="${question.questionContext != null}">
+            <p th:text="${question.questionContext}"></p>
         </th:block>
-        <h2 th:text="'状態' + ${questionModel.questionTitle}"></h2>
+        <h2 th:text="'状態' + ${question.title}"></h2>
         <h2>質問</h2>
-        <p th:text="${questionModel.question}"></p>
+        <p th:text="${question.question}"></p>
 
         <form action="#" th:action="@{/answer}" th:object="${answerForm}" method="post">
             <label>
@@ -27,10 +27,9 @@
             </label>
             <p>
                 <button type="submit">回答する</button>
-                <input type="hidden" id="answerContext" th:name="answerContext" th:value="${questionModel.answer}" />
-                <input type="hidden" id="questionNum" th:name="questionNum" th:value="${questionModel.questionNum}" />
-                <input type="hidden" id="nextQuestionNum" th:name="nextQuestionNum" th:value="${questionModel.nextQuestionNum}" />
-                <input type="hidden" id="phaseType" th:name="phaseType" th:value="${questionModel.phaseType}" />
+                <input type="hidden" id="answerContext" th:name="answerContext" th:value="${question.answer}" />
+                <input type="hidden" id="id" th:name="id" th:value="${question.nextId}" />
+                <input type="hidden" id="phaseType" th:name="phaseType" th:value="${question.phaseType}" />
             </p>
         </form>
         <p>
