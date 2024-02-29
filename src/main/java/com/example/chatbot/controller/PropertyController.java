@@ -1,7 +1,5 @@
 package com.example.chatbot.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,17 +7,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.chatbot.Form.AnswerForm;
 import com.example.chatbot.Form.PhaseForm;
-import com.example.chatbot.common.InquiryLearningConstants;
+import com.example.chatbot.common.AnalysisAnswerEnum;
+import com.example.chatbot.common.AnalysisQuestionEnum;
+import com.example.chatbot.common.AnalysisTitleEnum;
+import com.example.chatbot.common.ConclusionAnswerEnum;
+import com.example.chatbot.common.ConclusionQuestionEnum;
+import com.example.chatbot.common.ConclusionTitleEnum;
+import com.example.chatbot.common.DataAnswerEnum;
+import com.example.chatbot.common.DataQuestionEnum;
+import com.example.chatbot.common.DataTitleEnum;
 import com.example.chatbot.common.MainExploreConstants;
 import com.example.chatbot.common.PhaseTypeEnum;
+import com.example.chatbot.common.PlanAnswerEnum;
+import com.example.chatbot.common.PlanQuestionEnum;
+import com.example.chatbot.common.PlanTitleEnum;
 import com.example.chatbot.common.ProblemAnswerEnum;
-import com.example.chatbot.common.ProblemQuestionContextEnum;
 import com.example.chatbot.common.ProblemQuestionEnum;
 import com.example.chatbot.common.ProblemTitleEnum;
-import com.example.chatbot.common.StateEnum;
+import com.example.chatbot.common.QuestionContextEnum;
 import com.example.chatbot.model.AnswerModel;
 import com.example.chatbot.model.Question;
-import com.example.chatbot.model.QuestionModel;
 
 /*
  * プロパティのコントローラークラス
@@ -35,7 +42,6 @@ public class PropertyController {
      */
     @PostMapping("/phase")
     public String showFirstPage(PhaseForm phaseForm, Model model) {
-        // 質問の
         Integer id = phaseForm.getHdId();
         String propertyType = phaseForm.getType();
 
@@ -72,6 +78,12 @@ public class PropertyController {
         }
     }
 
+    /**
+     * 
+     * @param propertyType
+     * @param id
+     * @return
+     */
     private Question createQuestion(String propertyType, int id) {
         Question results = new Question();
 
@@ -80,22 +92,22 @@ public class PropertyController {
             case MainExploreConstants.PROBLEM:
                 results = createProblemQuestion(id);
                 break;
-            // // ②Planフェーズ
-            // case MainExploreConstants.PLAN:
-            //     results = createPlanQuestions(id);
-            //     break;
-            // // ③Dataフェーズ
-            // case MainExploreConstants.DATA:
-            //     results = createDataQuestions(id);
-            //     break;
-            // // ④Analysisフェーズ
-            // case MainExploreConstants.ANALYSIS:
-            //     results = createAnalysisQuestions(id);
-            //     break;
-            // // ⑤Conclusionフェーズ
-            // case MainExploreConstants.CONCLUSION:
-            //     results = createConclusionQuestions(id);
-            //     break;
+            // ②Planフェーズ
+            case MainExploreConstants.PLAN:
+                results = createPlanQuestion(id);
+                break;
+            // ③Dataフェーズ
+            case MainExploreConstants.DATA:
+                results = createDataQuestion(id);
+                break;
+            // ④Analysisフェーズ
+            case MainExploreConstants.ANALYSIS:
+                results = createAnalysisQuestion(id);
+                break;
+            // ⑤Conclusionフェーズ
+            case MainExploreConstants.CONCLUSION:
+                results = createConclusionQuestion(id);
+                break;
 
             default:
                 break;
@@ -108,24 +120,22 @@ public class PropertyController {
      * @param id
      * @return
      */
-    private List<Question> createConclusionQuestions(int id) {
-        List<Question> results = new ArrayList<>();
+    private Question createConclusionQuestion(int id) {
+        Question result = new Question();
 
-        switch (id) {
-            // // Conclusionフェーズの状態
-            // case
-            // results = createC1Questions();
-            // break;
-            // case
-            // results = createC2Questions();
-            // break;
-            // case
-            // results = createC3Questions();
-            // break;
-            default:
-                break;
-        }
-        return results;
+        String title = ConclusionTitleEnum.getVauleById(id);
+        String question = ConclusionQuestionEnum.getVauleById(id);
+        String answer = ConclusionAnswerEnum.getVauleById(id);
+        String questionContext = QuestionContextEnum.getVauleById(id);
+
+        result.setId(id);
+        result.setNextId(id + 1);
+        result.setPhaseType(getPhaseType(id, MainExploreConstants.CONCLUSION));
+        result.setTitle(title);
+        result.setQuestion(question);
+        result.setAnswer(answer);
+        result.setQuestionContext(questionContext);
+        return result;
     }
 
     /**
@@ -133,21 +143,22 @@ public class PropertyController {
      * @param id
      * @return
      */
-    private List<Question> createAnalysisQuestions(int id) {
-        List<Question> results = new ArrayList<>();
+    private Question createAnalysisQuestion(int id) {
+        Question result = new Question();
 
-        switch (id) {
-            // // Analysisフェーズの状態
-            // case
-            // results = createA1Questions();
-            // break;
-            // case
-            // results = createA2Questions();
-            // break;
-            default:
-                break;
-        }
-        return results;
+        String title = AnalysisTitleEnum.getVauleById(id);
+        String question = AnalysisQuestionEnum.getVauleById(id);
+        String answer = AnalysisAnswerEnum.getVauleById(id);
+        String questionContext = QuestionContextEnum.getVauleById(id);
+
+        result.setId(id);
+        result.setNextId(id + 1);
+        result.setPhaseType(getPhaseType(id, MainExploreConstants.ANALYSIS));
+        result.setTitle(title);
+        result.setQuestion(question);
+        result.setAnswer(answer);
+        result.setQuestionContext(questionContext);
+        return result;
     }
 
     /**
@@ -155,24 +166,22 @@ public class PropertyController {
      * @param id
      * @return
      */
-    private List<Question> createDataQuestions(int id) {
-        List<Question> results = new ArrayList<>();
+    private Question createDataQuestion(int id) {
+        Question result = new Question();
 
-        switch (id) {
-            // // // Dataフェーズの状態
-            // case
-            // results = createD1Questions();
-            // break;
-            // case
-            // results = createD2Questions();
-            // break;
-            // case
-            // results = createD3Questions();
-            // break;
-            default:
-                break;
-        }
-        return results;
+        String title = DataTitleEnum.getVauleById(id);
+        String question = DataQuestionEnum.getVauleById(id);
+        String answer = DataAnswerEnum.getVauleById(id);
+        String questionContext = QuestionContextEnum.getVauleById(id);
+
+        result.setId(id);
+        result.setNextId(id + 1);
+        result.setPhaseType(getPhaseType(id, MainExploreConstants.DATA));
+        result.setTitle(title);
+        result.setQuestion(question);
+        result.setAnswer(answer);
+        result.setQuestionContext(questionContext);
+        return result;
     }
 
     /**
@@ -180,28 +189,26 @@ public class PropertyController {
      * @param id
      * @return
      */
-    private List<Question> createPlanQuestions(int id) {
-        List<Question> results = new ArrayList<>();
+    private Question createPlanQuestion(int id) {
+        Question result = new Question();
 
-        switch (id) {
-            // // Planフェーズの状態
-            // case
-            // results = createPl1Questions();
-            // break;
-            // case
-            // results = createPl2Questions();
-            // break;
-            // case
-            // results = createPl3Questions();
-            // break;
-            default:
-                break;
-        }
-        return results;
+        String title = PlanTitleEnum.getVauleById(id);
+        String question = PlanQuestionEnum.getVauleById(id);
+        String answer = PlanAnswerEnum.getVauleById(id);
+        String questionContext = QuestionContextEnum.getVauleById(id);
+
+        result.setId(id);
+        result.setNextId(id + 1);
+        result.setPhaseType(getPhaseType(id, MainExploreConstants.PROBLEM));
+        result.setTitle(title);
+        result.setQuestion(question);
+        result.setAnswer(answer);
+        result.setQuestionContext(questionContext);
+        return result;
     }
 
     /**
-     * フェーズの状態の質問リストの作成
+     * フェーズの状態の質問の作成
      * @param id
      * @return
      */
@@ -211,19 +218,24 @@ public class PropertyController {
         String title = ProblemTitleEnum.getVauleById(id);
         String question = ProblemQuestionEnum.getVauleById(id);
         String answer = ProblemAnswerEnum.getVauleById(id);
-        String questionContext = ProblemQuestionContextEnum.getVauleById(id);
+        String questionContext = QuestionContextEnum.getVauleById(id);
 
         result.setId(id);
         result.setNextId(id + 1);
         result.setPhaseType(getPhaseType(id, MainExploreConstants.PROBLEM));
+        result.setTitle(title);
         result.setQuestion(question);
         result.setAnswer(answer);
         result.setQuestionContext(questionContext);
-        result.setTitle(title);
-        result.setPhaseType(MainExploreConstants.PROBLEM);
         return result;
     }
 
+    /**
+     * 
+     * @param id
+     * @param phaseType
+     * @return
+     */
     private String getPhaseType(int id, String phaseType) {
 
         String result = phaseType;
