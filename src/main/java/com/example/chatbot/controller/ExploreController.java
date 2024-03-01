@@ -1,5 +1,6 @@
 package com.example.chatbot.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,13 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.chatbot.Form.MainPhaseForm;
 import com.example.chatbot.common.MainExploreConstants;
+import com.example.chatbot.model.ExplorationPhases;
+import com.example.chatbot.model.Phase;
 import com.example.chatbot.model.SubExplorePhaseModel;
+import com.example.chatbot.service.ExploreService;
+import java.util.List;
 
 /*
  * 探究フェーズのコントローラークラス
  */
 @Controller
 public class ExploreController {
+
+    @Autowired
+    private ExploreService exploreService;
 
     /**
      * メインの探究フェーズの画面表示処理
@@ -22,12 +30,21 @@ public class ExploreController {
      */
     @RequestMapping("/")
     public String showMainPhasePage(Model model) {
+
+
+        // 探究フェーズ情報を取得
+        ExplorationPhases explorationPhase = exploreService.getExplorationPhase();
+
+        // フェーズ情報を取得
+        List<Phase> phases  = exploreService.getPhases();
+
         // メインの探究フェーズのタイトルをModelに追加
-        model.addAttribute("title", MainExploreConstants.MAIN_PHASE_TITLE);
+        model.addAttribute("title", explorationPhase.getTitle());
         // メインの探究フェーズの質問文をModelに追加
-        model.addAttribute("question", MainExploreConstants.MAIN_PHASE_QUESTION);
+        model.addAttribute("question", explorationPhase.getQuestion());
         // メインの探究フェーズの選択肢をModelに追加
-        model.addAttribute("phases", MainExploreConstants.MAIN_EXPLORE_PHASE_LIST);
+        model.addAttribute("phases", phases);
+
         return "main_phase";
     }
 
