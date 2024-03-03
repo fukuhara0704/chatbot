@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class MainPhaseForm {
-    public int phaseId;
+    public String selectedMainPhaseType;
 }

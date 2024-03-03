@@ -7,6 +7,8 @@ public class Phase {
 
     private String phaseTitle;
 
+    private String phaseType;
+
     public Integer getId() {
         return id;
     }
@@ -29,5 +31,13 @@ public class Phase {
 
     public void setPhaseTitle(String phaseTitle) {
         this.phaseTitle = phaseTitle;
+    }
+
+    public String getPhaseType() {
+        return phaseType;
+    }
+
+    public void setPhaseType(String phaseType) {
+        this.phaseType = phaseType;
     }
 }

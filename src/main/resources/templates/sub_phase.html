@@ -12,11 +12,10 @@
         
         <!-- フェーズの選択フォーム -->
         <form action="#" th:action="@{/phase}" th:object="${phaseForm}" method="post">
-            <input type="hidden" id="type" th:name="type" th:value="${subExplorePhase.type}" />
-            <label th:each="phase, iterStat : ${subExplorePhase.questions}" th:for="${'question' + iterStat.index}">
-                <input type="radio" th:id="${'question' + iterStat.index}" th:name="phaseForm" th:value="${phase}" required />
-                <input type="hidden" th:id="${'hd_question_' + iterStat.count}" th:name="hdId" th:value="${iterStat.count}" />
-                <span th:text="${phase}"></span>
+            <label th:each="subExplorePhase, iterStat : ${subExplorePhases}" th:for="${'question' + iterStat.index}">
+                <input type="radio" th:id="${'question' + iterStat.index}" th:name="phaseForm" th:value="${subExplorePhase.subPhaseId}" required />
+                <!-- <input type="hidden" th:id="${'hd_question_' + iterStat.count}" th:name="hdId" th:value="${iterStat.count}" /> -->
+                <span th:text="${subExplorePhase.subPhaseName}"></span>
             </label><br/>
             <p>
                 <input type="submit" value="次へ" />

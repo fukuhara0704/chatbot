@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.chatbot.mapper.PhaseMapper">
-  <resultMap id="BaseResultMap" type="com.example.chatbot.model.Phase">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="phase_id" jdbcType="INTEGER" property="phaseId" />
-    <result column="phase_title" jdbcType="VARCHAR" property="phaseTitle" />
-    <result column="phase_type" jdbcType="VARCHAR" property="phaseType" />
+<mapper namespace="com.example.chatbot.mapper.SubPhasesMapper">
+  <resultMap id="BaseResultMap" type="com.example.chatbot.model.SubPhases">
+    <id column="sub_phase_id" jdbcType="INTEGER" property="subPhaseId" />
+    <result column="sub_phase_name" jdbcType="VARCHAR" property="subPhaseName" />
+    <result column="next_property_id" jdbcType="INTEGER" property="nextPropertyId" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, phase_id, phase_title, phase_type
+    sub_phase_id, sub_phase_name, next_property_id, type
   </sql>
-  <select id="selectByExample" parameterType="com.example.chatbot.model.PhaseExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.example.chatbot.model.SubPhasesExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from phase
+    from sub_phases
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,76 +85,76 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from phase
-    where id = #{id,jdbcType=INTEGER}
+    from sub_phases
+    where sub_phase_id = #{subPhaseId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from phase
-    where id = #{id,jdbcType=INTEGER}
+    delete from sub_phases
+    where sub_phase_id = #{subPhaseId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.example.chatbot.model.PhaseExample">
-    delete from phase
+  <delete id="deleteByExample" parameterType="com.example.chatbot.model.SubPhasesExample">
+    delete from sub_phases
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.example.chatbot.model.Phase">
-    insert into phase (id, phase_id, phase_title, 
-      phase_type)
-    values (#{id,jdbcType=INTEGER}, #{phaseId,jdbcType=INTEGER}, #{phaseTitle,jdbcType=VARCHAR}, 
-      #{phaseType,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.example.chatbot.model.SubPhases">
+    insert into sub_phases (sub_phase_id, sub_phase_name, next_property_id, 
+      type)
+    values (#{subPhaseId,jdbcType=INTEGER}, #{subPhaseName,jdbcType=VARCHAR}, #{nextPropertyId,jdbcType=INTEGER}, 
+      #{type,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.chatbot.model.Phase">
-    insert into phase
+  <insert id="insertSelective" parameterType="com.example.chatbot.model.SubPhases">
+    insert into sub_phases
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
+      <if test="subPhaseId != null">
+        sub_phase_id,
       </if>
-      <if test="phaseId != null">
-        phase_id,
+      <if test="subPhaseName != null">
+        sub_phase_name,
       </if>
-      <if test="phaseTitle != null">
-        phase_title,
+      <if test="nextPropertyId != null">
+        next_property_id,
       </if>
-      <if test="phaseType != null">
-        phase_type,
+      <if test="type != null">
+        type,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
+      <if test="subPhaseId != null">
+        #{subPhaseId,jdbcType=INTEGER},
       </if>
-      <if test="phaseId != null">
-        #{phaseId,jdbcType=INTEGER},
+      <if test="subPhaseName != null">
+        #{subPhaseName,jdbcType=VARCHAR},
       </if>
-      <if test="phaseTitle != null">
-        #{phaseTitle,jdbcType=VARCHAR},
+      <if test="nextPropertyId != null">
+        #{nextPropertyId,jdbcType=INTEGER},
       </if>
-      <if test="phaseType != null">
-        #{phaseType,jdbcType=VARCHAR},
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.chatbot.model.PhaseExample" resultType="java.lang.Long">
-    select count(*) from phase
+  <select id="countByExample" parameterType="com.example.chatbot.model.SubPhasesExample" resultType="java.lang.Long">
+    select count(*) from sub_phases
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update phase
+    update sub_phases
     <set>
-      <if test="row.id != null">
-        id = #{row.id,jdbcType=INTEGER},
+      <if test="row.subPhaseId != null">
+        sub_phase_id = #{row.subPhaseId,jdbcType=INTEGER},
       </if>
-      <if test="row.phaseId != null">
-        phase_id = #{row.phaseId,jdbcType=INTEGER},
+      <if test="row.subPhaseName != null">
+        sub_phase_name = #{row.subPhaseName,jdbcType=VARCHAR},
       </if>
-      <if test="row.phaseTitle != null">
-        phase_title = #{row.phaseTitle,jdbcType=VARCHAR},
+      <if test="row.nextPropertyId != null">
+        next_property_id = #{row.nextPropertyId,jdbcType=INTEGER},
       </if>
-      <if test="row.phaseType != null">
-        phase_type = #{row.phaseType,jdbcType=VARCHAR},
+      <if test="row.type != null">
+        type = #{row.type,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="example != null">
@@ -162,35 +162,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update phase
-    set id = #{row.id,jdbcType=INTEGER},
-      phase_id = #{row.phaseId,jdbcType=INTEGER},
-      phase_title = #{row.phaseTitle,jdbcType=VARCHAR},
-      phase_type = #{row.phaseType,jdbcType=VARCHAR}
+    update sub_phases
+    set sub_phase_id = #{row.subPhaseId,jdbcType=INTEGER},
+      sub_phase_name = #{row.subPhaseName,jdbcType=VARCHAR},
+      next_property_id = #{row.nextPropertyId,jdbcType=INTEGER},
+      type = #{row.type,jdbcType=VARCHAR}
     <if test="example != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.chatbot.model.Phase">
-    update phase
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.chatbot.model.SubPhases">
+    update sub_phases
     <set>
-      <if test="phaseId != null">
-        phase_id = #{phaseId,jdbcType=INTEGER},
+      <if test="subPhaseName != null">
+        sub_phase_name = #{subPhaseName,jdbcType=VARCHAR},
       </if>
-      <if test="phaseTitle != null">
-        phase_title = #{phaseTitle,jdbcType=VARCHAR},
+      <if test="nextPropertyId != null">
+        next_property_id = #{nextPropertyId,jdbcType=INTEGER},
       </if>
-      <if test="phaseType != null">
-        phase_type = #{phaseType,jdbcType=VARCHAR},
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where sub_phase_id = #{subPhaseId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.chatbot.model.Phase">
-    update phase
-    set phase_id = #{phaseId,jdbcType=INTEGER},
-      phase_title = #{phaseTitle,jdbcType=VARCHAR},
-      phase_type = #{phaseType,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.example.chatbot.model.SubPhases">
+    update sub_phases
+    set sub_phase_name = #{subPhaseName,jdbcType=VARCHAR},
+      next_property_id = #{nextPropertyId,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR}
+    where sub_phase_id = #{subPhaseId,jdbcType=INTEGER}
   </update>
 </mapper>

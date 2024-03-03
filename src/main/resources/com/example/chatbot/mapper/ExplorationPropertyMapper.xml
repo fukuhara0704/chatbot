@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.chatbot.mapper.ExplorationPropertyMapper">
+  <resultMap id="BaseResultMap" type="com.example.chatbot.model.ExplorationProperty">
+    <id column="property_id" jdbcType="INTEGER" property="propertyId" />
+    <result column="property_question" jdbcType="VARCHAR" property="propertyQuestion" />
+    <result column="property_answer" jdbcType="VARCHAR" property="propertyAnswer" />
+    <result column="next_property_id" jdbcType="INTEGER" property="nextPropertyId" />
+    <result column="property_sub_question" jdbcType="VARCHAR" property="propertySubQuestion" />
+    <result column="property_sub_answer_yes" jdbcType="VARCHAR" property="propertySubAnswerYes" />
+    <result column="property_sub_answer_no" jdbcType="VARCHAR" property="propertySubAnswerNo" />
+    <result column="next_context" jdbcType="VARCHAR" property="nextContext" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    property_id, property_question, property_answer, next_property_id, property_sub_question, 
+    property_sub_answer_yes, property_sub_answer_no, next_context
+  </sql>
+  <select id="selectByExample" parameterType="com.example.chatbot.model.ExplorationPropertyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from exploration_property
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from exploration_property
+    where property_id = #{propertyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from exploration_property
+    where property_id = #{propertyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.chatbot.model.ExplorationPropertyExample">
+    delete from exploration_property
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.chatbot.model.ExplorationProperty">
+    insert into exploration_property (property_id, property_question, property_answer, 
+      next_property_id, property_sub_question, property_sub_answer_yes, 
+      property_sub_answer_no, next_context)
+    values (#{propertyId,jdbcType=INTEGER}, #{propertyQuestion,jdbcType=VARCHAR}, #{propertyAnswer,jdbcType=VARCHAR}, 
+      #{nextPropertyId,jdbcType=INTEGER}, #{propertySubQuestion,jdbcType=VARCHAR}, #{propertySubAnswerYes,jdbcType=VARCHAR}, 
+      #{propertySubAnswerNo,jdbcType=VARCHAR}, #{nextContext,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.chatbot.model.ExplorationProperty">
+    insert into exploration_property
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="propertyId != null">
+        property_id,
+      </if>
+      <if test="propertyQuestion != null">
+        property_question,
+      </if>
+      <if test="propertyAnswer != null">
+        property_answer,
+      </if>
+      <if test="nextPropertyId != null">
+        next_property_id,
+      </if>
+      <if test="propertySubQuestion != null">
+        property_sub_question,
+      </if>
+      <if test="propertySubAnswerYes != null">
+        property_sub_answer_yes,
+      </if>
+      <if test="propertySubAnswerNo != null">
+        property_sub_answer_no,
+      </if>
+      <if test="nextContext != null">
+        next_context,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="propertyId != null">
+        #{propertyId,jdbcType=INTEGER},
+      </if>
+      <if test="propertyQuestion != null">
+        #{propertyQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyAnswer != null">
+        #{propertyAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="nextPropertyId != null">
+        #{nextPropertyId,jdbcType=INTEGER},
+      </if>
+      <if test="propertySubQuestion != null">
+        #{propertySubQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="propertySubAnswerYes != null">
+        #{propertySubAnswerYes,jdbcType=VARCHAR},
+      </if>
+      <if test="propertySubAnswerNo != null">
+        #{propertySubAnswerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="nextContext != null">
+        #{nextContext,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.chatbot.model.ExplorationPropertyExample" resultType="java.lang.Long">
+    select count(*) from exploration_property
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update exploration_property
+    <set>
+      <if test="row.propertyId != null">
+        property_id = #{row.propertyId,jdbcType=INTEGER},
+      </if>
+      <if test="row.propertyQuestion != null">
+        property_question = #{row.propertyQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="row.propertyAnswer != null">
+        property_answer = #{row.propertyAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="row.nextPropertyId != null">
+        next_property_id = #{row.nextPropertyId,jdbcType=INTEGER},
+      </if>
+      <if test="row.propertySubQuestion != null">
+        property_sub_question = #{row.propertySubQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="row.propertySubAnswerYes != null">
+        property_sub_answer_yes = #{row.propertySubAnswerYes,jdbcType=VARCHAR},
+      </if>
+      <if test="row.propertySubAnswerNo != null">
+        property_sub_answer_no = #{row.propertySubAnswerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="row.nextContext != null">
+        next_context = #{row.nextContext,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update exploration_property
+    set property_id = #{row.propertyId,jdbcType=INTEGER},
+      property_question = #{row.propertyQuestion,jdbcType=VARCHAR},
+      property_answer = #{row.propertyAnswer,jdbcType=VARCHAR},
+      next_property_id = #{row.nextPropertyId,jdbcType=INTEGER},
+      property_sub_question = #{row.propertySubQuestion,jdbcType=VARCHAR},
+      property_sub_answer_yes = #{row.propertySubAnswerYes,jdbcType=VARCHAR},
+      property_sub_answer_no = #{row.propertySubAnswerNo,jdbcType=VARCHAR},
+      next_context = #{row.nextContext,jdbcType=VARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.chatbot.model.ExplorationProperty">
+    update exploration_property
+    <set>
+      <if test="propertyQuestion != null">
+        property_question = #{propertyQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyAnswer != null">
+        property_answer = #{propertyAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="nextPropertyId != null">
+        next_property_id = #{nextPropertyId,jdbcType=INTEGER},
+      </if>
+      <if test="propertySubQuestion != null">
+        property_sub_question = #{propertySubQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="propertySubAnswerYes != null">
+        property_sub_answer_yes = #{propertySubAnswerYes,jdbcType=VARCHAR},
+      </if>
+      <if test="propertySubAnswerNo != null">
+        property_sub_answer_no = #{propertySubAnswerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="nextContext != null">
+        next_context = #{nextContext,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where property_id = #{propertyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.chatbot.model.ExplorationProperty">
+    update exploration_property
+    set property_question = #{propertyQuestion,jdbcType=VARCHAR},
+      property_answer = #{propertyAnswer,jdbcType=VARCHAR},
+      next_property_id = #{nextPropertyId,jdbcType=INTEGER},
+      property_sub_question = #{propertySubQuestion,jdbcType=VARCHAR},
+      property_sub_answer_yes = #{propertySubAnswerYes,jdbcType=VARCHAR},
+      property_sub_answer_no = #{propertySubAnswerNo,jdbcType=VARCHAR},
+      next_context = #{nextContext,jdbcType=VARCHAR}
+    where property_id = #{propertyId,jdbcType=INTEGER}
+  </update>
+</mapper>

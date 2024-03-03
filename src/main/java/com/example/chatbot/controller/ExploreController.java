@@ -11,6 +11,7 @@ import com.example.chatbot.common.MainExploreConstants;
 import com.example.chatbot.model.ExplorationPhases;
 import com.example.chatbot.model.Phase;
 import com.example.chatbot.model.SubExplorePhaseModel;
+import com.example.chatbot.model.SubPhases;
 import com.example.chatbot.service.ExploreService;
 import java.util.List;
 
@@ -69,13 +70,11 @@ public class ExploreController {
         model.addAttribute("question", explorationPhase.getQuestion());
 
         // 選択されたメイン探究フェーズ
-        int selectedMainPhaseId = mainPhaseForm.getPhaseId();
-        // 探究フェーズ情報を取得
-        // ExplorationPhases explorationPhase = exploreService.getExplorationPhase(currentPhaseId);
-        // サブ探究フェーズの作成
-        SubExplorePhaseModel subExplorePhase = createSubExplorePhase("");
+        String selectedMainPhaseType = mainPhaseForm.getSelectedMainPhaseType();
+        // サブ探究フェーズの質問情報を取得
+        List<SubPhases> subExplorePhases = exploreService.getSubExplorePhases(selectedMainPhaseType);
 
-        model.addAttribute("subExplorePhase", subExplorePhase);
+        model.addAttribute("subExplorePhases", subExplorePhases);
         return "sub_phase";
     }
 

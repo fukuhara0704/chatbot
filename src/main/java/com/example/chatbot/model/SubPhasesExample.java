@@ -3,14 +3,14 @@ package com.example.chatbot.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhaseExample {
+public class SubPhasesExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public PhaseExample() {
+    public SubPhasesExample() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -104,263 +104,263 @@ public class PhaseExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andIdIsNull() {
-            addCriterion("id is null");
+        public Criteria andSubPhaseIdIsNull() {
+            addCriterion("sub_phase_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andIdIsNotNull() {
-            addCriterion("id is not null");
+        public Criteria andSubPhaseIdIsNotNull() {
+            addCriterion("sub_phase_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Integer value) {
-            addCriterion("id =", value, "id");
+        public Criteria andSubPhaseIdEqualTo(Integer value) {
+            addCriterion("sub_phase_id =", value, "subPhaseId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Integer value) {
-            addCriterion("id <>", value, "id");
+        public Criteria andSubPhaseIdNotEqualTo(Integer value) {
+            addCriterion("sub_phase_id <>", value, "subPhaseId");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Integer value) {
-            addCriterion("id >", value, "id");
+        public Criteria andSubPhaseIdGreaterThan(Integer value) {
+            addCriterion("sub_phase_id >", value, "subPhaseId");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("id >=", value, "id");
+        public Criteria andSubPhaseIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sub_phase_id >=", value, "subPhaseId");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Integer value) {
-            addCriterion("id <", value, "id");
+        public Criteria andSubPhaseIdLessThan(Integer value) {
+            addCriterion("sub_phase_id <", value, "subPhaseId");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
-            addCriterion("id <=", value, "id");
+        public Criteria andSubPhaseIdLessThanOrEqualTo(Integer value) {
+            addCriterion("sub_phase_id <=", value, "subPhaseId");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Integer> values) {
-            addCriterion("id in", values, "id");
+        public Criteria andSubPhaseIdIn(List<Integer> values) {
+            addCriterion("sub_phase_id in", values, "subPhaseId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Integer> values) {
-            addCriterion("id not in", values, "id");
+        public Criteria andSubPhaseIdNotIn(List<Integer> values) {
+            addCriterion("sub_phase_id not in", values, "subPhaseId");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Integer value1, Integer value2) {
-            addCriterion("id between", value1, value2, "id");
+        public Criteria andSubPhaseIdBetween(Integer value1, Integer value2) {
+            addCriterion("sub_phase_id between", value1, value2, "subPhaseId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("id not between", value1, value2, "id");
+        public Criteria andSubPhaseIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("sub_phase_id not between", value1, value2, "subPhaseId");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseIdIsNull() {
-            addCriterion("phase_id is null");
+        public Criteria andSubPhaseNameIsNull() {
+            addCriterion("sub_phase_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseIdIsNotNull() {
-            addCriterion("phase_id is not null");
+        public Criteria andSubPhaseNameIsNotNull() {
+            addCriterion("sub_phase_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseIdEqualTo(Integer value) {
-            addCriterion("phase_id =", value, "phaseId");
+        public Criteria andSubPhaseNameEqualTo(String value) {
+            addCriterion("sub_phase_name =", value, "subPhaseName");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseIdNotEqualTo(Integer value) {
-            addCriterion("phase_id <>", value, "phaseId");
+        public Criteria andSubPhaseNameNotEqualTo(String value) {
+            addCriterion("sub_phase_name <>", value, "subPhaseName");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseIdGreaterThan(Integer value) {
-            addCriterion("phase_id >", value, "phaseId");
+        public Criteria andSubPhaseNameGreaterThan(String value) {
+            addCriterion("sub_phase_name >", value, "subPhaseName");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("phase_id >=", value, "phaseId");
+        public Criteria andSubPhaseNameGreaterThanOrEqualTo(String value) {
+            addCriterion("sub_phase_name >=", value, "subPhaseName");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseIdLessThan(Integer value) {
-            addCriterion("phase_id <", value, "phaseId");
+        public Criteria andSubPhaseNameLessThan(String value) {
+            addCriterion("sub_phase_name <", value, "subPhaseName");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseIdLessThanOrEqualTo(Integer value) {
-            addCriterion("phase_id <=", value, "phaseId");
+        public Criteria andSubPhaseNameLessThanOrEqualTo(String value) {
+            addCriterion("sub_phase_name <=", value, "subPhaseName");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseIdIn(List<Integer> values) {
-            addCriterion("phase_id in", values, "phaseId");
+        public Criteria andSubPhaseNameLike(String value) {
+            addCriterion("sub_phase_name like", value, "subPhaseName");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseIdNotIn(List<Integer> values) {
-            addCriterion("phase_id not in", values, "phaseId");
+        public Criteria andSubPhaseNameNotLike(String value) {
+            addCriterion("sub_phase_name not like", value, "subPhaseName");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseIdBetween(Integer value1, Integer value2) {
-            addCriterion("phase_id between", value1, value2, "phaseId");
+        public Criteria andSubPhaseNameIn(List<String> values) {
+            addCriterion("sub_phase_name in", values, "subPhaseName");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("phase_id not between", value1, value2, "phaseId");
+        public Criteria andSubPhaseNameNotIn(List<String> values) {
+            addCriterion("sub_phase_name not in", values, "subPhaseName");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTitleIsNull() {
-            addCriterion("phase_title is null");
+        public Criteria andSubPhaseNameBetween(String value1, String value2) {
+            addCriterion("sub_phase_name between", value1, value2, "subPhaseName");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTitleIsNotNull() {
-            addCriterion("phase_title is not null");
+        public Criteria andSubPhaseNameNotBetween(String value1, String value2) {
+            addCriterion("sub_phase_name not between", value1, value2, "subPhaseName");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTitleEqualTo(String value) {
-            addCriterion("phase_title =", value, "phaseTitle");
+        public Criteria andNextPropertyIdIsNull() {
+            addCriterion("next_property_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTitleNotEqualTo(String value) {
-            addCriterion("phase_title <>", value, "phaseTitle");
+        public Criteria andNextPropertyIdIsNotNull() {
+            addCriterion("next_property_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTitleGreaterThan(String value) {
-            addCriterion("phase_title >", value, "phaseTitle");
+        public Criteria andNextPropertyIdEqualTo(Integer value) {
+            addCriterion("next_property_id =", value, "nextPropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTitleGreaterThanOrEqualTo(String value) {
-            addCriterion("phase_title >=", value, "phaseTitle");
+        public Criteria andNextPropertyIdNotEqualTo(Integer value) {
+            addCriterion("next_property_id <>", value, "nextPropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTitleLessThan(String value) {
-            addCriterion("phase_title <", value, "phaseTitle");
+        public Criteria andNextPropertyIdGreaterThan(Integer value) {
+            addCriterion("next_property_id >", value, "nextPropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTitleLessThanOrEqualTo(String value) {
-            addCriterion("phase_title <=", value, "phaseTitle");
+        public Criteria andNextPropertyIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("next_property_id >=", value, "nextPropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTitleLike(String value) {
-            addCriterion("phase_title like", value, "phaseTitle");
+        public Criteria andNextPropertyIdLessThan(Integer value) {
+            addCriterion("next_property_id <", value, "nextPropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTitleNotLike(String value) {
-            addCriterion("phase_title not like", value, "phaseTitle");
+        public Criteria andNextPropertyIdLessThanOrEqualTo(Integer value) {
+            addCriterion("next_property_id <=", value, "nextPropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTitleIn(List<String> values) {
-            addCriterion("phase_title in", values, "phaseTitle");
+        public Criteria andNextPropertyIdIn(List<Integer> values) {
+            addCriterion("next_property_id in", values, "nextPropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTitleNotIn(List<String> values) {
-            addCriterion("phase_title not in", values, "phaseTitle");
+        public Criteria andNextPropertyIdNotIn(List<Integer> values) {
+            addCriterion("next_property_id not in", values, "nextPropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTitleBetween(String value1, String value2) {
-            addCriterion("phase_title between", value1, value2, "phaseTitle");
+        public Criteria andNextPropertyIdBetween(Integer value1, Integer value2) {
+            addCriterion("next_property_id between", value1, value2, "nextPropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTitleNotBetween(String value1, String value2) {
-            addCriterion("phase_title not between", value1, value2, "phaseTitle");
+        public Criteria andNextPropertyIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("next_property_id not between", value1, value2, "nextPropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTypeIsNull() {
-            addCriterion("phase_type is null");
+        public Criteria andTypeIsNull() {
+            addCriterion("type is null");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTypeIsNotNull() {
-            addCriterion("phase_type is not null");
+        public Criteria andTypeIsNotNull() {
+            addCriterion("type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTypeEqualTo(String value) {
-            addCriterion("phase_type =", value, "phaseType");
+        public Criteria andTypeEqualTo(String value) {
+            addCriterion("type =", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTypeNotEqualTo(String value) {
-            addCriterion("phase_type <>", value, "phaseType");
+        public Criteria andTypeNotEqualTo(String value) {
+            addCriterion("type <>", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTypeGreaterThan(String value) {
-            addCriterion("phase_type >", value, "phaseType");
+        public Criteria andTypeGreaterThan(String value) {
+            addCriterion("type >", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("phase_type >=", value, "phaseType");
+        public Criteria andTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("type >=", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTypeLessThan(String value) {
-            addCriterion("phase_type <", value, "phaseType");
+        public Criteria andTypeLessThan(String value) {
+            addCriterion("type <", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTypeLessThanOrEqualTo(String value) {
-            addCriterion("phase_type <=", value, "phaseType");
+        public Criteria andTypeLessThanOrEqualTo(String value) {
+            addCriterion("type <=", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTypeLike(String value) {
-            addCriterion("phase_type like", value, "phaseType");
+        public Criteria andTypeLike(String value) {
+            addCriterion("type like", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTypeNotLike(String value) {
-            addCriterion("phase_type not like", value, "phaseType");
+        public Criteria andTypeNotLike(String value) {
+            addCriterion("type not like", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTypeIn(List<String> values) {
-            addCriterion("phase_type in", values, "phaseType");
+        public Criteria andTypeIn(List<String> values) {
+            addCriterion("type in", values, "type");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTypeNotIn(List<String> values) {
-            addCriterion("phase_type not in", values, "phaseType");
+        public Criteria andTypeNotIn(List<String> values) {
+            addCriterion("type not in", values, "type");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTypeBetween(String value1, String value2) {
-            addCriterion("phase_type between", value1, value2, "phaseType");
+        public Criteria andTypeBetween(String value1, String value2) {
+            addCriterion("type between", value1, value2, "type");
             return (Criteria) this;
         }
 
-        public Criteria andPhaseTypeNotBetween(String value1, String value2) {
-            addCriterion("phase_type not between", value1, value2, "phaseType");
+        public Criteria andTypeNotBetween(String value1, String value2) {
+            addCriterion("type not between", value1, value2, "type");
             return (Criteria) this;
         }
     }
