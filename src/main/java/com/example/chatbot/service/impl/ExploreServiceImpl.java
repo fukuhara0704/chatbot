@@ -9,26 +9,24 @@ import com.example.chatbot.mapper.ExplorationPhasesMapper;
 import com.example.chatbot.mapper.PhaseMapper;
 import com.example.chatbot.model.ExplorationPhases;
 import com.example.chatbot.model.Phase;
-import com.example.chatbot.repository.ExplorationPhasesRepository;
-import com.example.chatbot.repository.PhaseRepository;
 import com.example.chatbot.service.ExploreService;
 
 @Service
 public class ExploreServiceImpl implements ExploreService{
 
     @Autowired
-    private PhaseRepository phaseRepository;
+    private PhaseMapper phaseMapper;
 
     @Autowired
-    private ExplorationPhasesRepository explorationPhasesRepository;
+    private ExplorationPhasesMapper explorationPhasesMapper;
 
     @Override
     public List<Phase> getPhases() {
-        return phaseRepository.selectByExample(null);
+        return phaseMapper.selectByExample(null);
     }
 
     @Override
-    public ExplorationPhases getExplorationPhase() {
-        return explorationPhasesRepository.selectByPrimaryKey(1);
+    public ExplorationPhases getExplorationPhase(int phaseId) {
+        return explorationPhasesMapper.selectByPrimaryKey(phaseId);
     }
 }

@@ -8,5 +8,5 @@ import java.util.List;
 public interface ExploreService {
 
     List<Phase> getPhases();
-    ExplorationPhases getExplorationPhase();
+    ExplorationPhases getExplorationPhase(int phaseId);
 }

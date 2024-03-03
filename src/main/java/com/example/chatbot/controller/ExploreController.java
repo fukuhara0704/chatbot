@@ -31,9 +31,10 @@ public class ExploreController {
     @RequestMapping("/")
     public String showMainPhasePage(Model model) {
 
+        int currentPhaseId = 1;
 
         // 探究フェーズ情報を取得
-        ExplorationPhases explorationPhase = exploreService.getExplorationPhase();
+        ExplorationPhases explorationPhase = exploreService.getExplorationPhase(currentPhaseId);
 
         // フェーズ情報を取得
         List<Phase> phases  = exploreService.getPhases();
@@ -57,11 +58,22 @@ public class ExploreController {
     @PostMapping("/sub")
     public String showSubPhasePage(MainPhaseForm mainPhaseForm, Model model) {
 
-        // 選択された探究フェーズ
-        String selectedMainPhase = mainPhaseForm.getSelectedMainPhase();
+        int currentPhaseId = 2;
 
+
+        // サブ探究フェーズ情報を取得
+        ExplorationPhases explorationPhase = exploreService.getExplorationPhase(currentPhaseId);
+        // サブの探究フェーズのタイトルをModelに追加
+        model.addAttribute("title", explorationPhase.getTitle());
+        // サブの探究フェーズの質問文をModelに追加
+        model.addAttribute("question", explorationPhase.getQuestion());
+
+        // 選択されたメイン探究フェーズ
+        int selectedMainPhaseId = mainPhaseForm.getPhaseId();
+        // 探究フェーズ情報を取得
+        // ExplorationPhases explorationPhase = exploreService.getExplorationPhase(currentPhaseId);
         // サブ探究フェーズの作成
-        SubExplorePhaseModel subExplorePhase = createSubExplorePhase(selectedMainPhase);
+        SubExplorePhaseModel subExplorePhase = createSubExplorePhase("");
 
         model.addAttribute("subExplorePhase", subExplorePhase);
         return "sub_phase";

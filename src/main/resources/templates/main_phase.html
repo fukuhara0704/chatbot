@@ -15,9 +15,9 @@
         <!-- フェーズの選択フォーム -->
         <form action="#" th:action="@{/sub}" th:object="${selectedMainPhase}" method="post">
             <label th:each="phase, iterStat : ${phases}" th:for="${'phase' + iterStat.index}">
-                <input type="radio" th:id="${'phase' + iterStat.index}" th:name="selectedMainPhase" th:value="${phase}"
+                <input type="radio" th:id="${'phase' + iterStat.index}" th:name="selectedMainPhase" th:value="${phase.phaseTitle}"
                     required />
-                <span th:text="${phase}"></span>
+                <span th:text="${phase.phaseTitle}"></span>
             </label><br />
             <p>
                 <input type="submit" value="次へ" />
