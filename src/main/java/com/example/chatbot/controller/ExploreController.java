@@ -78,39 +78,4 @@ public class ExploreController {
         return "sub_phase";
     }
 
-    /**
-     * サブ探究フェーズの作成
-     * @param selectedMainPhase 選択されたメイン探究フェーズ
-     * @return
-     */
-    private SubExplorePhaseModel createSubExplorePhase(String selectedMainPhase) {
-
-        SubExplorePhaseModel subExplorePhase = new SubExplorePhaseModel();
-        subExplorePhase.setTitle(MainExploreConstants.MAIN_PHASE_TITLE);
-        subExplorePhase.setQuestion(MainExploreConstants.MAIN_PHASE_QUESTION);
-
-        switch (selectedMainPhase) {
-            case "①Problemフェーズ":
-                subExplorePhase.setType(MainExploreConstants.PROBLEM);
-                subExplorePhase.setQuestions(MainExploreConstants.PROBLEM_PHASE_LIST);
-                break;
-            case "②Planフェーズ":
-                subExplorePhase.setType(MainExploreConstants.PLAN);
-                subExplorePhase.setQuestions(MainExploreConstants.PLAN_PHASE_LIST);
-                break;
-            case "③Dataフェーズ":
-                subExplorePhase.setType(MainExploreConstants.DATA);
-                subExplorePhase.setQuestions(MainExploreConstants.DATA_PHASE_LIST);
-                break;
-            case "④Analysisフェーズ":
-                subExplorePhase.setType(MainExploreConstants.ANALYSIS);
-                subExplorePhase.setQuestions(MainExploreConstants.ANALYSIS_PHASE_LIST);
-                break;
-            case "⑤Conclusionフェーズ":
-                subExplorePhase.setType(MainExploreConstants.CONCLUSION);
-                subExplorePhase.setQuestions(MainExploreConstants.CONCLUSION_PHASE_LIST);
-                break;
-        }
-        return subExplorePhase;
-    }
 }
