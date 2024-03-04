@@ -34,7 +34,6 @@ public class ExploreController {
 
         // 探究フェーズ情報を取得
         ExplorationPhases explorationPhase = exploreService.getExplorationPhase(currentPhaseId);
-
         // フェーズ情報を取得
         List<Phase> phases  = exploreService.getPhases();
 
@@ -59,7 +58,6 @@ public class ExploreController {
 
         int currentPhaseId = 2;
 
-
         // サブ探究フェーズ情報を取得
         ExplorationPhases explorationPhase = exploreService.getExplorationPhase(currentPhaseId);
         // サブの探究フェーズのタイトルをModelに追加
@@ -71,8 +69,8 @@ public class ExploreController {
         String selectedMainPhaseType = mainPhaseForm.getSelectedMainPhaseType();
         // サブ探究フェーズの質問情報を取得
         List<SubPhases> subExplorePhases = exploreService.getSubExplorePhases(selectedMainPhaseType);
-
         model.addAttribute("subExplorePhases", subExplorePhases);
+
         return "sub_phase";
     }
 
