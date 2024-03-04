@@ -4,7 +4,5 @@ import lombok.Data;
 
 @Data
 public class PhaseForm {
-    public String phaseForm;
-    public String type;
-    public Integer hdId;
+    public int nextPropertyId;
 }

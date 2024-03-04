@@ -4,13 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Answer</title>
+    <title>Finish</title>
 </head>
 
 <body>
     <div>
-        <h2>回答</h2>
-        <p th:text="${propertyAnswer}"></p>
+        <p>質問は終了しました。</p>
+        <p>回答結果を保存する場合は保存ボタンを押下してください。</p>
+        <p>質問をやり直す場合は、戻る・最初に戻るボタンを押下してください。</p>
+        <form action="#" th:action="@{/sava}" method="post">
+            <p>
+                <button type="submit">保存</button>
+            </p>
+        </form>
         <p>
             <!-- 戻るボタンを追加 -->
             <button onclick="goBack()">戻る</button>

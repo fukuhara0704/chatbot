@@ -14,7 +14,7 @@
         <form action="#" th:action="@{/phase}" th:object="${phaseForm}" method="post">
             <label th:each="subExplorePhase, iterStat : ${subExplorePhases}" th:for="${'question' + iterStat.index}">
                 <input type="radio" th:id="${'question' + iterStat.index}" th:name="phaseForm" th:value="${subExplorePhase.subPhaseId}" required />
-                <!-- <input type="hidden" th:id="${'hd_question_' + iterStat.count}" th:name="hdId" th:value="${iterStat.count}" /> -->
+                <input type="hidden" th:id="${'hd_next_property_id_' + iterStat.count}" th:name="nextPropertyId" th:value="${subExplorePhase.nextPropertyId}" />
                 <span th:text="${subExplorePhase.subPhaseName}"></span>
             </label><br/>
             <p>

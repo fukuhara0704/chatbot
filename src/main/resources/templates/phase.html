@@ -9,27 +9,33 @@
 
 <body>
     <div>
-        <th:block th:if="${question.questionContext != null}">
-            <p th:text="${question.questionContext}"></p>
+        <th:block th:if="${nextContext != null}">
+            <p th:text="${nextContext}"></p>
         </th:block>
-        <h2 th:text="'状態' + ${question.title}"></h2>
-        <h2>質問</h2>
-        <p th:text="${question.question}"></p>
+        <th:block th:if="${explorationProperty.propertyAnswer != null}">
+            <h2>質問</h2>
+        </th:block>
+        <p th:text="${explorationProperty.propertyQuestion}"></p>
 
         <form action="#" th:action="@{/answer}" th:object="${answerForm}" method="post">
             <label>
                 <input type="radio" name="answer" th:value="true" required>
                 はい
             </label>
-            <label>
-                <input type="radio" name="answer" th:value="false" required>
-                いいえ
-            </label>
+            <th:block th:if="${explorationProperty.propertyAnswer != null}">
+                <label>
+                    <input type="radio" name="answer" th:value="false" required>
+                    いいえ
+                </label>
+            </th:block>
             <p>
                 <button type="submit">回答する</button>
-                <input type="hidden" id="answerContext" th:name="answerContext" th:value="${question.answer}" />
-                <input type="hidden" id="id" th:name="id" th:value="${question.nextId}" />
-                <input type="hidden" id="phaseType" th:name="phaseType" th:value="${question.phaseType}" />
+                <input type="hidden" id="propertyAnswer" th:name="propertyAnswer"
+                    th:value="${explorationProperty.propertyAnswer}" />
+                <input type="hidden" id="nextPropertyId" th:name="nextPropertyId"
+                    th:value="${explorationProperty.nextPropertyId}" />
+                <input type="hidden" id="nextContext" th:name="nextContext"
+                    th:value="${explorationProperty.nextContext}" />
             </p>
         </form>
         <p>

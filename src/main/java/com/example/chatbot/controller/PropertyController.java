@@ -1,6 +1,7 @@
 package com.example.chatbot.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,13 +27,18 @@ import com.example.chatbot.common.ProblemQuestionEnum;
 import com.example.chatbot.common.ProblemTitleEnum;
 import com.example.chatbot.common.QuestionContextEnum;
 import com.example.chatbot.model.AnswerModel;
+import com.example.chatbot.model.ExplorationProperty;
 import com.example.chatbot.model.Question;
+import com.example.chatbot.service.PropertyService;
 
 /*
  * プロパティのコントローラークラス
  */
 @Controller
 public class PropertyController {
+
+    @Autowired
+    private PropertyService propertyService;
 
     /**
      * プロパティ項目の初期画面表示処理
@@ -42,13 +48,13 @@ public class PropertyController {
      */
     @PostMapping("/phase")
     public String showFirstPage(PhaseForm phaseForm, Model model) {
-        Integer id = phaseForm.getHdId();
-        String propertyType = phaseForm.getType();
+        Integer nextPropertyId = phaseForm.getNextPropertyId();
 
         // 質問の作成
-        Question question = createQuestion(propertyType, id);
+        // Question question = createQuestion(propertyType, id);
+        ExplorationProperty explorationProperty = propertyService.getExplorationProperty(nextPropertyId);
 
-        model.addAttribute("question", question);
+        model.addAttribute("explorationProperty", explorationProperty);
         return "phase";
     }
 
@@ -62,18 +68,20 @@ public class PropertyController {
     public String showAnswerPage(AnswerForm answerForm, Model model) {
 
 
-        Integer id = answerForm.getId();
-        String propertyType = answerForm.getPhaseType();
+        Integer nextPropertyId = answerForm.getNextPropertyId();
+        String nextContext = answerForm.getNextContext();
 
         if (answerForm.answer) {
-            // 質問の作成
-            Question question = createQuestion(propertyType, id);
-            model.addAttribute("question", question);
-            return "phase";
+            if(answerForm.getNextPropertyId() != null){
+                ExplorationProperty explorationProperty = propertyService.getExplorationProperty(nextPropertyId);
+                model.addAttribute("explorationProperty", explorationProperty);
+                model.addAttribute("nextContext", nextContext);
+                return "phase";
+            }else{
+                return "finish";
+            }
         } else {
-            AnswerModel answerModel = new AnswerModel();
-            answerModel.setAnswerContext(answerForm.getAnswerContext());
-            model.addAttribute("answerModel", answerModel);
+            model.addAttribute("propertyAnswer", answerForm.getPropertyAnswer());
             return "answer";
         }
     }
