@@ -1,6 +1,7 @@
 package com.example.chatbot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,7 @@ public class ExploreController {
      * @return
      */
     @RequestMapping("/")
-    public String showMainPhasePage(Model model) {
+    public String showMainPhasePage(Authentication loginUser, Model model) {
 
         int currentPhaseId = 1;
 
@@ -54,7 +55,7 @@ public class ExploreController {
      * @return
      */
     @PostMapping("/sub")
-    public String showSubPhasePage(MainPhaseForm mainPhaseForm, Model model) {
+    public String showSubPhasePage(Authentication loginUser, MainPhaseForm mainPhaseForm, Model model) {
 
         int currentPhaseId = 2;
 

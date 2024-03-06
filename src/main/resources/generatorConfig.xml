@@ -24,9 +24,10 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.chatbot.mapper" 
                         targetProject="C:/Users/fukuhara kohei/Desktop/01_java/01_chatBot/chatbot/src/main/java"/>
         <!-- 生成対象テーブル ※ コメントアウトは生成済み-->
-        <table schema="testdb" tableName="phase" ></table>
-        <table schema="testdb" tableName="exploration_phases" ></table>
-        <table schema="testdb" tableName="exploration_property" ></table>
-        <table schema="testdb" tableName="sub_phases" ></table>
+        <!-- <table schema="testdb" tableName="phase" ></table> -->
+        <!-- <table schema="testdb" tableName="exploration_phases" ></table> -->
+        <!-- <table schema="testdb" tableName="exploration_property" ></table> -->
+        <!-- <table schema="testdb" tableName="sub_phases" ></table> -->
+        <table schema="testdb" tableName="user_info" ></table>
     </context>
 </generatorConfiguration>

@@ -2,6 +2,7 @@ package com.example.chatbot.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +28,7 @@ public class PropertyController {
      * @return
      */
     @PostMapping("/phase")
-    public String showFirstPage(PhaseForm phaseForm, Model model) {
+    public String showFirstPage(Authentication loginUser, PhaseForm phaseForm, Model model) {
         Integer nextPropertyId = phaseForm.getNextPropertyId();
 
         // 質問の作成
@@ -44,7 +45,7 @@ public class PropertyController {
      * @return
      */
     @PostMapping("/answer")
-    public String showAnswerPage(AnswerForm answerForm, Model model) {
+    public String showAnswerPage(Authentication loginUser, AnswerForm answerForm, Model model) {
 
 
         Integer nextPropertyId = answerForm.getNextPropertyId();
