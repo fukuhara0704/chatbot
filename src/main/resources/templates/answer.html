@@ -5,6 +5,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Answer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        div {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        h3 {
+            color: #4caf50;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,30 +61,20 @@
         <h3 th:text="${propertyAnswer}"></h3>
 
         <p>質問は終了しました。</p>
-        <p>回答結果を保存する場合は保存ボタンを押下してください。</p>
-        <p>質問をやり直す場合は、戻る・最初に戻るボタンを押下してください。</p>
+        <p>回答結果を保存する場合は、「保存]ボタンを押下してください。</p>
+        <p>質問をやり直す場合は、「最初に戻る」ボタンを押下してください。</p>
         <form action="#" th:action="@{/save}" th:object="${saveForm}" method="post">
             <p>
                 <button type="submit">保存</button>
                 <input type="hidden" id="hd_id" th:value="${nextPropertyId}" th:name="nextPropertyId" />
             </p>
         </form>
-        <p>
-            <!-- 戻るボタンを追加 -->
-            <button onclick="goBack()">戻る</button>
-        </p>
         <form action="#" th:action="@{/}" method="get">
             <p>
                 <button type="submit">最初に戻る</button>
             </p>
         </form>
     </div>
-
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
 </body>
 
 </html>
