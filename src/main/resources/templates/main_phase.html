@@ -10,7 +10,7 @@
 <body>
     <div>
         <h2 th:text="${title}"></h2>
-        <p th:text="${question}"></p>
+        <h3 th:text="${question}"></h3>
 
         <!-- フェーズの選択フォーム -->
         <form action="#" th:action="@{/sub}" th:object="${selectedMainPhaseType}" method="post">

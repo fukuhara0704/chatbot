@@ -10,7 +10,17 @@
 <body>
     <div>
         <h2>回答</h2>
-        <p th:text="${propertyAnswer}"></p>
+        <h3 th:text="${propertyAnswer}"></h3>
+
+        <p>質問は終了しました。</p>
+        <p>回答結果を保存する場合は保存ボタンを押下してください。</p>
+        <p>質問をやり直す場合は、戻る・最初に戻るボタンを押下してください。</p>
+        <form action="#" th:action="@{/save}" th:object="${saveForm}" method="post">
+            <p>
+                <button type="submit">保存</button>
+                <input type="hidden" id="hd_id" th:value="${nextPropertyId}" th:name="nextPropertyId" />
+            </p>
+        </form>
         <p>
             <!-- 戻るボタンを追加 -->
             <button onclick="goBack()">戻る</button>

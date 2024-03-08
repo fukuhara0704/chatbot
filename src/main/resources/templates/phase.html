@@ -15,7 +15,7 @@
         <th:block th:if="${explorationProperty.propertyAnswer != null}">
             <h2>質問</h2>
         </th:block>
-        <p th:text="${explorationProperty.propertyQuestion}"></p>
+        <h3 th:text="${explorationProperty.propertyQuestion}"></h3>
 
         <form action="#" th:action="@{/answer}" th:object="${answerForm}" method="post">
             <label>

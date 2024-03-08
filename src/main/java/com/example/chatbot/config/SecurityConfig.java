@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()//ログインの設定
                 .loginPage("/login")
-                .defaultSuccessUrl("/", true)//ログインが成功したら/にいく
+                .defaultSuccessUrl("/top", true)//ログインが成功したら/にいく
                 .and()
                 .logout()//ログアウトの設定
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));//logoutのURLを/logoutにする

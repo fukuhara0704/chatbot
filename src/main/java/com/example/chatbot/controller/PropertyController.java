@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.chatbot.Form.AnswerForm;
 import com.example.chatbot.Form.PhaseForm;
+import com.example.chatbot.Form.SaveForm;
 import com.example.chatbot.model.ExplorationProperty;
 import com.example.chatbot.service.PropertyService;
 
@@ -58,11 +59,23 @@ public class PropertyController {
                 model.addAttribute("nextContext", nextContext);
                 return "phase";
             }else{
+
+                model.addAttribute("nextPropertyId", nextPropertyId);
                 return "finish";
             }
         } else {
+            model.addAttribute("nextPropertyId", nextPropertyId);
             model.addAttribute("propertyAnswer", answerForm.getPropertyAnswer());
             return "answer";
         }
     }
+    @PostMapping("/save")
+    public String save(Authentication loginUser, SaveForm saveForm) {
+
+        Integer nextPropertyId = saveForm.getNextPropertyId();
+        String userName = loginUser.getName();
+        propertyService.save(userName, nextPropertyId);
+        return "top";
+    }
+
 }

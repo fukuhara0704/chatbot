@@ -6,4 +6,5 @@ public interface PropertyService {
 
     ExplorationProperty getExplorationProperty(Integer nextPropertyId);
 
+    void save(String userName, Integer nextPropertyId);
 }

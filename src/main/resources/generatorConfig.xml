@@ -28,6 +28,7 @@
         <!-- <table schema="testdb" tableName="exploration_phases" ></table> -->
         <!-- <table schema="testdb" tableName="exploration_property" ></table> -->
         <!-- <table schema="testdb" tableName="sub_phases" ></table> -->
-        <table schema="testdb" tableName="user_info" ></table>
+        <!-- <table schema="testdb" tableName="user_info" ></table> -->
+        <table schema="testdb" tableName="user_responses" ></table>
     </context>
 </generatorConfiguration>

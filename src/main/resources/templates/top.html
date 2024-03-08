@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOP画面</title>
+</head>
+
+<body>
+    <div>
+        <h2>TOP画面</h2>
+        <form action="#" th:action="@{/}" method="get">
+            <p>
+                <button type="submit">現状を調査</button>
+            </p>
+        </form>
+        <form action="#" th:action="@{/history}" method="get">
+            <p>
+                <button type="submit">回答結果</button>
+            </p>
+        </form>
+    </div>
+</body>
+
+</html>

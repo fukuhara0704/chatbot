@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>履歴一覧画面</title>
+</head>
+<body>
+    <h2 th:text="${userName}"></h2>
+    <h2>履歴ページ</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>日時</th>
+                <th>現在の状態の質問</th>
+                <th>現在の状態の回答</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 履歴データをThymeleafで表示 -->
+            <tr th:each="userHistory : ${userHistories}">
+                <td th:text="${userHistory.id}"></td>
+                <td th:text="${userHistory.registDate}"></td>
+                <td th:text="${userHistory.lastQuestion}"></td>
+                <td th:text="${userHistory.lastAnswer}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <form action="#" th:action="@{/top}" method="get">
+        <p>
+            <button type="submit">TOP画面に戻る</button>
+        </p>
+    </form>
+</body>
+</html>
