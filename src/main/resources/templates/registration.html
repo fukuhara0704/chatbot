@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>ログイン</title>
+    <title>新規登録</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -70,22 +70,19 @@
 </head>
 
 <body>
+
     <div class="wrapper">
-        <form th:action="@{/login}" method="post" name="Login_Form" class="form-signin">
-            <h2 class="form-signin-heading">ログインしてください</h2>
+        <form th:action="@{/register}" th:object="${userInfo}" method="post">
+            <h2 class="form-signin-heading">新規登録</h2>
             <hr class="colorgraph">
             <br>
-            <input type="text" name="username" placeholder="username" /><br>
-            <input type="password" name="password" placeholder="password" /> <br>
-            <button name="Submit" value="ログイン" type="Submit">Login</button>
-        </form>
-        <br>
-        <!-- 新規登録ボタン -->
-        <form th:action="@{/register}" method="get">
-            <button>新規登録</buttone=>
+            <label>ユーザ名: <input type="text" th:field="*{username}" /></label><br/>
+            <label>パスワード: <input type="password" th:field="*{password}" /></label><br/>
+            <button type="submit">登録</button>
         </form>
         <br>
     </div>
+
 </body>
 
 </html>
