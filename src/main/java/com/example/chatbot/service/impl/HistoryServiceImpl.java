@@ -1,8 +1,8 @@
 package com.example.chatbot.service.impl;
 
-import java.util.List;
-import java.util.ArrayList;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,16 +11,11 @@ import com.example.chatbot.mapper.ExplorationPropertyMapper;
 import com.example.chatbot.mapper.UserResponsesMapper;
 import com.example.chatbot.model.ExplorationProperty;
 import com.example.chatbot.model.ExplorationPropertyExample;
-import com.example.chatbot.model.JsonContainer;
-import com.example.chatbot.model.PropertyResult;
 import com.example.chatbot.model.PropertyStatus;
 import com.example.chatbot.model.UserHistory;
 import com.example.chatbot.model.UserResponses;
 import com.example.chatbot.model.UserResponsesExample;
 import com.example.chatbot.service.HistoryService;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class HistoryServiceImpl implements HistoryService {
@@ -31,62 +26,21 @@ public class HistoryServiceImpl implements HistoryService {
     @Autowired
     ExplorationPropertyMapper explorationPropertyMapper;
 
-    /**
-     * json作成
-     * @param nextPropertyId
-     * @param explorationProperties 
-     * @return
-     * @throws JsonProcessingException 
-     */
-    private String createAnswerJson(Integer nextPropertyId, List<ExplorationProperty> explorationProperties) throws JsonProcessingException {
-        // データを持つクラスのリストを作成
-        List<PropertyResult> data = new ArrayList<>();
-        if(nextPropertyId == null){
-            for (ExplorationProperty explorationProperty : explorationProperties) {
-                PropertyResult propertyResult = new PropertyResult(explorationProperty.getPropertyId(), "true");
-                data.add(propertyResult);
-            }
-        }else{
-            for (ExplorationProperty explorationProperty : explorationProperties) {
-                if(nextPropertyId > explorationProperty.getPropertyId()){
-                    PropertyResult propertyResult = new PropertyResult(explorationProperty.getPropertyId(), "true");
-                    data.add(propertyResult);
-                }else{
-                    PropertyResult propertyResult = new PropertyResult(explorationProperty.getPropertyId(), "false");
-                    data.add(propertyResult);
-                }
-            }
-        }
-        // JSONオブジェクトを構築
-        JsonContainer jsonContainer = new JsonContainer();
-        jsonContainer.setData(data);
-
-        // Jackson ObjectMapperを使用してJSONに変換
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        String AnswerJson = objectMapper.writeValueAsString(jsonContainer);
-
-        System.out.println(AnswerJson);
-
-        return AnswerJson;
-    }
-
-
     @Override
     public List<UserHistory> getHistroy(List<UserResponses> userResponses) {
         List<UserHistory> results = new ArrayList<>();
 
         ExplorationPropertyExample explorationPropertyExample = new ExplorationPropertyExample();
         explorationPropertyExample.createCriteria().andPropertyAnswerIsNotNull();
-        List<ExplorationProperty> explorationProperties = explorationPropertyMapper.selectByExample(explorationPropertyExample);
-
+        List<ExplorationProperty> explorationProperties = explorationPropertyMapper
+                .selectByExample(explorationPropertyExample);
 
         for (UserResponses userRespons : userResponses) {
             Integer lastAnswerBeforeId;
-            if(userRespons.getLastAnswerId() == null){
+            if (userRespons.getLastAnswerId() == null) {
                 lastAnswerBeforeId = null;
-            }else{
-                lastAnswerBeforeId = userRespons.getLastAnswerId() -1;
+            } else {
+                lastAnswerBeforeId = userRespons.getLastAnswerId() - 1;
             }
 
             UserHistory data = new UserHistory();
@@ -100,20 +54,20 @@ public class HistoryServiceImpl implements HistoryService {
             for (ExplorationProperty explorationProperty : explorationProperties) {
                 PropertyStatus propertyStatus = new PropertyStatus();
                 propertyStatus.setQuestion(explorationProperty.getPropertyQuestion());
-                if(lastAnswerBeforeId == null){
+                if (lastAnswerBeforeId == null) {
 
                     propertyStatus.setStatus(true);
-                    if(explorationProperty.getNextPropertyId() == null){
+                    if (explorationProperty.getNextPropertyId() == null) {
                         data.setLastQuestion(explorationProperty.getPropertyQuestion());
                         data.setLastAnswer(explorationProperty.getPropertyAnswer());
                     }
-                }else{
-                    if(userRespons.getLastAnswerId() > explorationProperty.getPropertyId()){
+                } else {
+                    if (userRespons.getLastAnswerId() > explorationProperty.getPropertyId()) {
                         propertyStatus.setStatus(true);
-                    }else{
+                    } else {
                         propertyStatus.setStatus(false);
                     }
-                    if(lastAnswerBeforeId.equals(explorationProperty.getPropertyId())){
+                    if (lastAnswerBeforeId.equals(explorationProperty.getPropertyId())) {
                         data.setLastQuestion(explorationProperty.getPropertyQuestion());
                         data.setLastAnswer(explorationProperty.getPropertyAnswer());
                     }
@@ -125,7 +79,6 @@ public class HistoryServiceImpl implements HistoryService {
         }
         return results;
     }
-
 
     @Override
     public List<UserResponses> getUserResponses(String userName) {
