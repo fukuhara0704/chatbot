@@ -73,8 +73,8 @@
         </thead>
         <tbody>
             <!-- 履歴データをThymeleafで表示 -->
-            <tr th:each="userHistory : ${userHistories}">
-                <td th:text="${userHistory.id}"></td>
+            <tr th:each="userHistory, iterStat : ${userHistories}">
+                <td th:text="${iterStat.count}"></td>
                 <td th:text="${userHistory.registDate}"></td>
                 <td th:text="${userHistory.lastQuestion}"></td>
                 <td th:text="${userHistory.lastAnswer}"></td>
