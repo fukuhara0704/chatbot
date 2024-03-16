@@ -1,0 +1,6 @@
+"id","phase_id","phase_title","phase_type"
+1,1,①Problemフェーズ,Pr
+2,2,②Planフェーズ,Pl
+3,3,③Dataフェーズ,D
+4,4,④Analysisフェーズ,A
+5,5,⑤Conclusionフェーズ,C
